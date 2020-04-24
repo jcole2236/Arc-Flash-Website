@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/javascript.js') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>About</title>
+</head>
+<body>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <header>
+        <img class="logo" src="/static/img/AF Text and Flash Logo White.png" alt="Arc FLash Logo in white font color">
+        <nav>
+            <ul class="nav__links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/events">Events</a></li>
+                <li><a href="/forum">Forum</a></li>
+            </ul>
+        </nav>
+        <div>
+            <a class="cta" href="https://evo9x.gg/collections/arc-flash-esports?page=1"><button>Store</button></a>
+            <a class="cta" href="/logout"><button>Logout</button></a>
+        </div>
+    </header>
+    <div class="user_thought-logo">
+        <img src="/static/img/AF Full Logo V2.png" alt="AF logo in complete color">
+    </div>
+    <div class="panel">
+        <div class="container-dashboard">
+            <div class="container-thought">
+                <hr>
+                <h3>{{this_thought['first_name']}} {{this_thought['last_name']}} says: </h3>
+
+                <br>
+                
+                <p>{{this_thought['content']}}</p>
+
+                <br>
+
+                <a href="/dashboard/{{this_thought['id']}}/add_like" class="lbtn"><button>Like</button></a>
+                <a href="/dashboard/{{this_thought['id']}}/unlike" class="dbtn"><button>Unlike</button></a>
+                <a href="/dashboard" class="tbtn"><button>Dashboard</button></a>
+                <hr>
+            </div>
+            <div class="container-table">
+                <h3>People who have liked this thought:</h3>
+                <table>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                    </tr>
+                    {% for like in liked_thought %}
+                    <tr>
+                        <td>{{like['first_name']}}</td>
+                        <td>{{like['last_name']}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>©2019 by Arc Flash Esports LLC</p>
+    </div>
+</body>
+</html>

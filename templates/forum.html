@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/javascript.js') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Events</title>
+</head>
+<body>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <header>
+        <img class="logo" src="/static/img/AF Text and Flash Logo White.png" alt="Arc FLash Logo in white font color">
+        <nav>
+            <ul class="nav__links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/events">Events</a></li>
+                <li><a href="/forum">Forum</a></li>
+            </ul>
+        </nav>
+        <a class="cta" href="https://evo9x.gg/collections/arc-flash-esports?page=1"><button>Store</button></a>
+    </header>
+    <div class="panel-1">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="bg-img">
+            <img src="/static/img/banner.jpg" alt="dark background with centered arc flash logo">
+            <form action="/login" class="container" method="POST">
+                <h1 class="container-text">Login</h1>
+
+                <label for="email"><b class="container-text">Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" required>
+
+                <label for="psw"><b class="container-text">Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" required>
+
+                <button type="submit" class="btn" value="Login">Login</button>
+            </form>
+            <form action="/register" class="container-left" method="POST">
+                <h1 class="container-text">Register</h1>
+
+                <label for="first_name"><b class="container-text">First Name</b></label>
+                <input type="text" placeholder="Enter First Name" name="first_name" required>
+    
+                <label for="last_name"><b class="container-text">Last Name</b></label>
+                <input type="text" placeholder="Enter Last Name" name="last_name" required>
+    
+                <label for="email"><b class="container-text">Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" required>
+    
+                <label for="password"><b class="container-text">Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" required>
+    
+                <label for="c_password"><b class="container-text">Confirm Password</b></label>
+                <input type="password" placeholder="Confirm Password" name="c_password" required>
+    
+                <button type="submit" class="btn" value="Register">Register</button>
+            </form>
+        </div>
+    </div>
+    <div class="panel-2">
+
+    </div>
+    <div class="footer">
+        <p>©2019 by Arc Flash Esports LLC</p>
+    </div>
+</body>
+</html>

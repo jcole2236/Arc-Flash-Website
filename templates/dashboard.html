@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/scroll.js') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>About</title>
+</head>
+<body>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <header>
+        <img class="logo" src="/static/img/AF Text and Flash Logo White.png" alt="Arc FLash Logo in white font color">
+        <nav>
+            <ul class="nav__links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/events">Events</a></li>
+                <li><a href="/forum">Forum</a></li>
+            </ul>
+        </nav>
+        <div>
+            <a class="cta" href="https://evo9x.gg/collections/arc-flash-esports?page=1"><button>Store</button></a>
+            <a class="cta" href="/logout"><button>Logout</button></a>
+        </div>
+    </header>
+    <div class="panel-1">
+        <hr>
+        <div class="sub-header">
+            <h1>Hi {{session['fname']}} {{session['lname']}}!</h1>
+        </div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <!-- <form action="/thoughts/create" method="POST">
+            <p><input type="text" name="content" placeholder="Post a Great Thought Here!"></p>
+            <button type="submit" class="btn" value="Add Thought">Post</button>
+        </form> -->
+
+        <form action="/dashboard/create" class="container-add-thought" method="POST">
+            <h1 class="container-text">Share your Thoughts!</h1>
+
+            <label for="add thought"><b class="container-text">Post: </b></label>
+            <input type="text" name="content" placeholder="Post a Great Thought Here!">
+
+            <button type="submit" class="btn" value="Add Thought">Post</button>
+        </form>
+
+        <hr>
+    </div>
+    <div class="panel">
+        <div class="container-dashboard">
+            {% for thought in thoughts %}
+            <div class="container-thought">
+                <hr>
+                <h3>{{thought.first_name}} {{thought.last_name}}  says: </h3>
+
+                <br>
+
+                <p>{{thought.content}}</p>
+                
+                <br>
+
+                <p>This thought has been liked <b>{{thought.times_liked}}</b> times.</p>
+                <a class="tbtn" href="/dashboard/{{thought.thoughts_id}}"><button>Details</button></a>
+                {% if session['user_id'] == thought.user_id %}
+                <a class="dbtn" href="/dashboard/{{thought.thoughts_id}}/destroy"><button>Delete</button></a>
+                {% endif %}
+                <hr>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="footer">
+        <p>©2019 by Arc Flash Esports LLC</p>
+    </div>
+</body>
+</html>
